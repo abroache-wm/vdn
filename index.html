@@ -7,7 +7,7 @@
   <meta name="description" content="VDN is a full-service design studio offering curation, interior design consultation, CAD services, and decor. Founded by a technical designer with an eye for collected elegance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Forum&family=Marcellus+SC&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* ============================================
        COLLECTED ELEGANCE — VDN DESIGN STUDIO
@@ -81,21 +81,23 @@
     }
 
     /* ============================================
-       TYPOGRAPHY — Fraunces for display, Outfit for body
-       Fraunces: a soft serif with optical sizing,
-       wonky and warm. Not cold, not generic.
+       TYPOGRAPHY
+       Cinzel: logo mark. Inscriptional, monumental.
+       Forum: section headings. Classical, lighter.
+       Marcellus SC: labels, subheads, service titles.
        ============================================ */
 
     h1, h2, h3, h4 {
-      font-family: 'Fraunces', serif;
-      font-weight: 300;
+      font-family: 'Forum', serif;
+      font-weight: 400;
       line-height: 1.1;
     }
 
     .display-xl {
+      font-family: 'Cinzel', serif;
       font-size: clamp(3.5rem, 10vw, 9rem);
-      font-weight: 300;
-      letter-spacing: -0.03em;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       line-height: 0.95;
     }
 
@@ -117,8 +119,8 @@
     }
 
     .label {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 500;
+      font-family: 'Marcellus SC', serif;
+      font-weight: 400;
       font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -147,10 +149,10 @@
     }
 
     .nav-mark {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
       font-size: 1.3rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       color: #fff;
     }
 
@@ -161,7 +163,7 @@
     }
 
     .nav-links a {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Marcellus SC', serif;
       font-weight: 400;
       font-size: 0.78rem;
       letter-spacing: 0.1em;
@@ -404,8 +406,8 @@
     }
 
     .service-number {
-      font-family: 'Fraunces', serif;
-      font-weight: 300;
+      font-family: 'Forum', serif;
+      font-weight: 400;
       font-size: 2.5rem;
       color: var(--sage-mid);
       opacity: 0.4;
@@ -415,10 +417,12 @@
     }
 
     .service-card h3 {
-      font-size: 1.3rem;
+      font-family: 'Marcellus SC', serif;
+      font-size: 1.15rem;
       font-weight: 400;
       margin-bottom: 1rem;
       color: var(--sage-whisper);
+      letter-spacing: 0.04em;
     }
 
     .service-card p {
@@ -450,8 +454,8 @@
     }
 
     .philosophy blockquote {
-      font-family: 'Fraunces', serif;
-      font-weight: 300;
+      font-family: 'Forum', serif;
+      font-weight: 400;
       font-style: italic;
       font-size: clamp(1.5rem, 3.5vw, 2.8rem);
       line-height: 1.35;
@@ -566,6 +570,7 @@
     }
 
     .portfolio-meta h3 {
+      font-family: 'Marcellus SC', serif;
       font-size: 1.05rem;
       font-weight: 400;
       color: var(--ink);
@@ -743,11 +748,80 @@
     }
 
     footer .footer-mark {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
       font-size: 0.9rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       color: var(--bridge);
+    }
+
+    /* ============================================
+       TEAM — Meet the team
+       ============================================ */
+
+    .team {
+      padding: clamp(5rem, 10vw, 10rem) 3rem;
+      background: var(--page-warm);
+    }
+
+    .team-header {
+      max-width: 1200px;
+      margin: 0 auto clamp(4rem, 6vw, 7rem);
+    }
+
+    .team-header .label {
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .team-header h2 {
+      color: var(--ink);
+    }
+
+    .team-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+    }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(0.15);
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+
+    .team-member:hover .team-photo {
+      filter: grayscale(0);
+      transform: scale(0.98);
+    }
+
+    .team-info {
+      padding-top: 1.2rem;
+    }
+
+    .team-info h3 {
+      font-family: 'Marcellus SC', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .team-info span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
     }
 
     /* ============================================
@@ -843,6 +917,10 @@
         grid-row: auto;
       }
 
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -874,6 +952,7 @@
       .services,
       .portfolio,
       .philosophy,
+      .team,
       .contact {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
@@ -898,6 +977,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#team">Team</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -1029,6 +1109,44 @@
         <div class="portfolio-meta">
           <h3>Studio Loft</h3>
           <span>Space planning &amp; CAD &middot; Mixed-use</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team" id="team">
+    <div class="team-header">
+      <span class="label reveal">The Studio</span>
+      <h2 class="display-lg reveal reveal-delay-1">Meet the team</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-member reveal">
+        <img src="Frankie.png" alt="Frankie" class="team-photo">
+        <div class="team-info">
+          <h3>Frankie</h3>
+          <span>Chief Executive Officer</span>
+        </div>
+      </div>
+      <div class="team-member reveal reveal-delay-1">
+        <img src="Danielle.png" alt="Danielle" class="team-photo">
+        <div class="team-info">
+          <h3>Danielle</h3>
+          <span>Chief Creative Officer</span>
+        </div>
+      </div>
+      <div class="team-member reveal reveal-delay-2">
+        <img src="Margie.png" alt="Margie" class="team-photo">
+        <div class="team-info">
+          <h3>Margie</h3>
+          <span>Chief Beauty Officer</span>
+        </div>
+      </div>
+      <div class="team-member reveal reveal-delay-3">
+        <img src="Barnabas.png" alt="Barnabas" class="team-photo">
+        <div class="team-info">
+          <h3>Barnabas</h3>
+          <span>Intern</span>
         </div>
       </div>
     </div>
