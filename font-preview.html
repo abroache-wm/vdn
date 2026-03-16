@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VDN — Font Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=UnifrakturMaguntia&family=UnifrakturCook:wght@700&family=Pirata+One&family=Cinzel:wght@400;700&family=IM+Fell+English+SC&family=IM+Fell+DW+Pica+SC&family=Almendra+Display&family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Italiana&family=Great+Vibes&family=Pinyon+Script&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Gambarino from Fontshare -->
+  <link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Hagelslag palette — deep chocolate, butter, honey */
+      --chocolate: #3B2314;
+      --chocolate-mid: #6B3E26;
+      --chocolate-light: #8B5E3C;
+      --honey: #C8922A;
+      --honey-light: #D4A64E;
+      --butter: #E8C86A;
+      --butter-light: #F0D77B;
+      --cream: #F5ECD7;
+      --bread: #FBF7EE;
+      --ink: #2A1A0E;
+      --ink-soft: #6B5D50;
+      --ink-faint: #9A8D7E;
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--bread);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ---- Header ---- */
+    .page-header {
+      padding: 3rem 3rem 2rem;
+      border-bottom: 1px solid var(--cream);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: var(--chocolate);
+    }
+
+    .page-header a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-faint);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cream);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .page-header a:hover {
+      color: var(--chocolate);
+      border-color: var(--chocolate);
+    }
+
+    /* ---- Controls ---- */
+    .controls {
+      padding: 2rem 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      border-bottom: 1px solid var(--cream);
+      background: var(--cream);
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .control-group label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-faint);
+    }
+
+    .control-group input[type="text"] {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--honey-light);
+      background: var(--bread);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      width: 200px;
+      transition: border-color 0.3s;
+    }
+
+    .control-group input[type="text"]:focus {
+      border-color: var(--honey);
+    }
+
+    .control-group input[type="range"] {
+      width: 160px;
+      accent-color: var(--chocolate-mid);
+    }
+
+    .size-value {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .theme-toggles {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: auto;
+    }
+
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--honey-light);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .theme-btn:hover { transform: scale(1.1); }
+
+    .theme-btn.active {
+      box-shadow: 0 0 0 2px var(--chocolate);
+    }
+
+    .theme-btn.light { background: var(--bread); }
+    .theme-btn.cream { background: var(--cream); }
+    .theme-btn.honey { background: var(--honey); }
+    .theme-btn.dark { background: var(--chocolate); }
+
+    /* ---- Category Headers ---- */
+    .category {
+      padding: 2.5rem 3rem 0.8rem;
+    }
+
+    .category h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    /* ---- Font Cards ---- */
+    .font-grid {
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+    }
+
+    .font-card {
+      padding: 2.5rem 2rem;
+      cursor: pointer;
+      transition: background 0.4s ease;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .font-card:hover {
+      background: var(--cream);
+    }
+
+    .font-card.selected {
+      background: var(--butter-light);
+    }
+
+    .font-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .font-card-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-faint);
+    }
+
+    .font-card-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--cream);
+      color: var(--ink-faint);
+    }
+
+    .font-card-tag.free { border-color: var(--honey); color: var(--chocolate-mid); }
+    .font-card-tag.paid { border-color: var(--chocolate-light); color: var(--chocolate-light); }
+
+    .font-card-preview {
+      line-height: 1;
+      letter-spacing: -0.02em;
+      word-break: break-word;
+      transition: font-size 0.3s ease;
+      color: var(--chocolate);
+    }
+
+    .font-card-source {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+    }
+
+    .font-card-source a {
+      color: var(--honey);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .font-card-source a:hover {
+      border-bottom-color: var(--honey);
+    }
+
+    /* ---- Large Preview ---- */
+    .large-preview {
+      padding: 4rem 3rem;
+      text-align: center;
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.5s, color 0.5s;
+      background: var(--chocolate);
+      color: var(--cream);
+      position: relative;
+    }
+
+    .large-preview-text {
+      font-size: clamp(5rem, 15vw, 14rem);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      transition: font-family 0.1s;
+    }
+
+    .large-preview-label {
+      margin-top: 2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      opacity: 0.5;
+    }
+
+    .large-preview-subtitle {
+      margin-top: 2.5rem;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      line-height: 1.5;
+      opacity: 0.6;
+      max-width: 500px;
+      transition: font-family 0.1s;
+    }
+
+    /* ---- Side-by-side ---- */
+    .comparison {
+      padding: 3rem;
+      background: var(--cream);
+      border-top: 1px solid var(--honey-light);
+    }
+
+    .comparison h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 2rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .comparison-item {
+      padding: 2rem;
+      background: var(--bread);
+      text-align: center;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .comparison-item:hover {
+      background: var(--butter-light);
+    }
+
+    .comparison-vdn {
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+      color: var(--chocolate);
+    }
+
+    .comparison-name {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-faint);
+    }
+
+    /* Theme variations */
+    .large-preview.theme-light {
+      background: var(--bread);
+      color: var(--chocolate);
+    }
+
+    .large-preview.theme-cream {
+      background: var(--cream);
+      color: var(--chocolate);
+    }
+
+    .large-preview.theme-honey {
+      background: var(--honey);
+      color: var(--chocolate);
+    }
+
+    .large-preview.theme-dark {
+      background: var(--chocolate);
+      color: var(--cream);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .page-header, .controls, .category, .font-grid, .comparison, .large-preview {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .font-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .controls { gap: 1rem; }
+      .theme-toggles { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>VDN — Font Preview</h1>
+    <a href="index.html">&larr; Back to site</a>
+  </header>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>Preview Text</label>
+      <input type="text" id="previewText" value="VDN" maxlength="20">
+    </div>
+    <div class="control-group">
+      <label>Card Size</label>
+      <input type="range" id="sizeSlider" min="2" max="8" step="0.5" value="4.5">
+      <span class="size-value" id="sizeValue">4.5rem</span>
+    </div>
+    <div class="control-group">
+      <label>Preview Background</label>
+      <div class="theme-toggles">
+        <button class="theme-btn light" data-theme="theme-light" title="Bread"></button>
+        <button class="theme-btn cream" data-theme="theme-cream" title="Cream"></button>
+        <button class="theme-btn honey" data-theme="theme-honey" title="Honey"></button>
+        <button class="theme-btn dark active" data-theme="theme-dark" title="Chocolate"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shortlisted -->
+  <div class="category"><h2>Shortlisted</h2></div>
+  <div class="font-grid">
+    <div class="font-card selected" data-font="'Fraunces', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Fraunces</span>
+        <span class="font-card-tag free">Free — Google Fonts</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Fraunces', serif;">VDN</div>
+      <div class="font-card-source">Soft optical serif with wonky warmth. <a href="https://fonts.google.com/specimen/Fraunces" target="_blank">View &rarr;</a></div>
+    </div>
+    <div class="font-card" data-font="'Gambarino', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Gambarino</span>
+        <span class="font-card-tag free">Free — Fontshare</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Gambarino', serif;">VDN</div>
+      <div class="font-card-source">High-contrast editorial serif. <a href="https://www.fontshare.com/fonts/gambarino" target="_blank">View &rarr;</a></div>
+    </div>
+    <div class="font-card" data-font="'Recoleta', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Recoleta</span>
+        <span class="font-card-tag paid">Paid — Latinotype</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Recoleta', Georgia, serif; opacity: 0.35;">VDN</div>
+      <div class="font-card-source">Soft retro serif — requires purchase. <a href="https://www.myfonts.com/collections/recoleta-font-latinotype" target="_blank">Purchase &rarr;</a></div>
+    </div>
+    <div class="font-card" data-font="'Komorebi', sans-serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Komorebi</span>
+        <span class="font-card-tag paid">Paid — VP Creative</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Komorebi', sans-serif; opacity: 0.35;">VDN</div>
+      <div class="font-card-source">Display sans — requires purchase. <a href="https://creativemarket.com/VPcreativeshop" target="_blank">Purchase &rarr;</a></div>
+    </div>
+  </div>
+
+  <!-- Elegant & Editorial -->
+  <div class="category"><h2>Elegant &amp; Editorial</h2></div>
+  <div class="font-grid">
+    <div class="font-card" data-font="'Cormorant Garamond', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Cormorant Garamond</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">VDN</div>
+      <div class="font-card-source">Refined display Garamond. Beautiful contrast.</div>
+    </div>
+    <div class="font-card" data-font="'Playfair Display', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Playfair Display</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Playfair Display', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">High-contrast transitional serif. Editorial authority.</div>
+    </div>
+    <div class="font-card" data-font="'Cinzel', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Cinzel</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Cinzel', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Roman inscriptional capitals. Monumental.</div>
+    </div>
+    <div class="font-card" data-font="'Italiana', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Italiana</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Italiana', serif;">VDN</div>
+      <div class="font-card-source">Thin, sophisticated serif. Quiet luxury.</div>
+    </div>
+  </div>
+
+  <!-- Flowery & Calligraphic -->
+  <div class="category"><h2>Flowery &amp; Calligraphic</h2></div>
+  <div class="font-grid">
+    <div class="font-card" data-font="'Great Vibes', cursive" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Great Vibes</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Great Vibes', cursive;">VDN</div>
+      <div class="font-card-source">Flowing connected script. Elegant flourishes.</div>
+    </div>
+    <div class="font-card" data-font="'Pinyon Script', cursive" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Pinyon Script</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Pinyon Script', cursive;">VDN</div>
+      <div class="font-card-source">Formal copperplate script. Ornate precision.</div>
+    </div>
+    <div class="font-card" data-font="'Almendra Display', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Almendra Display</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Almendra Display', serif;">VDN</div>
+      <div class="font-card-source">Medieval calligraphic display. Manuscript character.</div>
+    </div>
+  </div>
+
+  <!-- Blackletter & Old Dutch -->
+  <div class="category"><h2>Blackletter &amp; Old Dutch</h2></div>
+  <div class="font-grid">
+    <div class="font-card" data-font="'UnifrakturMaguntia', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">UnifrakturMaguntia</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'UnifrakturMaguntia', serif;">VDN</div>
+      <div class="font-card-source">Classic Fraktur blackletter. Old world gravity.</div>
+    </div>
+    <div class="font-card" data-font="'UnifrakturCook', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">UnifrakturCook</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'UnifrakturCook', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Lighter Fraktur variant. More open than Maguntia.</div>
+    </div>
+    <div class="font-card" data-font="'Pirata One', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Pirata One</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Pirata One', serif;">VDN</div>
+      <div class="font-card-source">Bold decorative blackletter. Strong logo presence.</div>
+    </div>
+    <div class="font-card" data-font="'IM Fell DW Pica SC', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">IM Fell DW Pica SC</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'IM Fell DW Pica SC', serif;">VDN</div>
+      <div class="font-card-source">Dutch-cut pica roman. Amsterdam printing heritage.</div>
+    </div>
+    <div class="font-card" data-font="'IM Fell English SC', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">IM Fell English SC</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'IM Fell English SC', serif;">VDN</div>
+      <div class="font-card-source">17th-century revival. Weathered historical texture.</div>
+    </div>
+  </div>
+
+  <!-- Side-by-side -->
+  <div class="comparison">
+    <h2>Side by Side</h2>
+    <div class="comparison-grid" id="comparisonGrid"></div>
+  </div>
+
+  <!-- Large Preview -->
+  <div class="large-preview theme-dark" id="largePreview">
+    <div class="large-preview-text" id="largePreviewText" style="font-family: 'Fraunces', serif;">VDN</div>
+    <div class="large-preview-label" id="largePreviewLabel">Fraunces</div>
+    <div class="large-preview-subtitle" id="largePreviewSubtitle" style="font-family: 'Fraunces', serif;">Design Studio & Curation</div>
+  </div>
+
+  <script>
+    const previewText = document.getElementById('previewText');
+    const sizeSlider = document.getElementById('sizeSlider');
+    const sizeValue = document.getElementById('sizeValue');
+    const largePreview = document.getElementById('largePreview');
+    const largePreviewText = document.getElementById('largePreviewText');
+    const largePreviewLabel = document.getElementById('largePreviewLabel');
+    const largePreviewSubtitle = document.getElementById('largePreviewSubtitle');
+    const cards = document.querySelectorAll('.font-card');
+
+    const allFonts = [
+      { name: 'Fraunces', family: "'Fraunces', serif", weight: '400' },
+      { name: 'Gambarino', family: "'Gambarino', serif", weight: '400' },
+      { name: 'Cormorant Garamond', family: "'Cormorant Garamond', serif", weight: '600' },
+      { name: 'Playfair Display', family: "'Playfair Display', serif", weight: '700' },
+      { name: 'Cinzel', family: "'Cinzel', serif", weight: '700' },
+      { name: 'Italiana', family: "'Italiana', serif", weight: '400' },
+      { name: 'Great Vibes', family: "'Great Vibes', cursive", weight: '400' },
+      { name: 'Pinyon Script', family: "'Pinyon Script', cursive", weight: '400' },
+      { name: 'Almendra Display', family: "'Almendra Display', serif", weight: '400' },
+      { name: 'UnifrakturMaguntia', family: "'UnifrakturMaguntia', serif", weight: '400' },
+      { name: 'UnifrakturCook', family: "'UnifrakturCook', serif", weight: '700' },
+      { name: 'Pirata One', family: "'Pirata One', serif", weight: '400' },
+      { name: 'IM Fell DW Pica SC', family: "'IM Fell DW Pica SC', serif", weight: '400' },
+      { name: 'IM Fell English SC', family: "'IM Fell English SC', serif", weight: '400' },
+    ];
+
+    // Build comparison grid
+    const compGrid = document.getElementById('comparisonGrid');
+    allFonts.forEach(f => {
+      const div = document.createElement('div');
+      div.className = 'comparison-item';
+      div.innerHTML = `
+        <div class="comparison-vdn" style="font-family: ${f.family}; font-weight: ${f.weight};">VDN</div>
+        <div class="comparison-name">${f.name}</div>
+      `;
+      div.addEventListener('click', () => {
+        largePreviewText.style.fontFamily = f.family;
+        largePreviewText.style.fontWeight = f.weight;
+        largePreviewSubtitle.style.fontFamily = f.family;
+        largePreviewLabel.textContent = f.name;
+        largePreview.scrollIntoView({ behavior: 'smooth' });
+      });
+      compGrid.appendChild(div);
+    });
+
+    previewText.addEventListener('input', () => {
+      const val = previewText.value || 'VDN';
+      document.querySelectorAll('.font-card-preview').forEach(el => el.textContent = val);
+      document.querySelectorAll('.comparison-vdn').forEach(el => el.textContent = val);
+      largePreviewText.textContent = val;
+    });
+
+    sizeSlider.addEventListener('input', () => {
+      const val = sizeSlider.value;
+      sizeValue.textContent = val + 'rem';
+      document.querySelectorAll('.font-card-preview').forEach(el => {
+        el.style.fontSize = val + 'rem';
+      });
+    });
+
+    document.querySelectorAll('.font-card-preview').forEach(el => {
+      el.style.fontSize = '4.5rem';
+    });
+
+    function selectFont(card) {
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const font = card.dataset.font;
+      const name = card.querySelector('.font-card-name').textContent;
+      largePreviewText.style.fontFamily = font;
+      largePreviewSubtitle.style.fontFamily = font;
+      largePreviewLabel.textContent = name;
+      largePreview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        largePreview.className = 'large-preview ' + btn.dataset.theme;
+      });
+    });
+  </script>
+
+</body>
+</html>
