@@ -1,0 +1,302 @@
+/*
+ * COLLECTED ELEGANCE
+ * A design system built on compositional tension,
+ * tonal range, and the logic of things that feel
+ * right without announcing why.
+ *
+ * This is not a color palette. It's a set of relationships.
+ * The principle: every visual family needs both a whisper
+ * and a weight. Structure pairs with gesture. Mass pairs
+ * with movement. Nothing exists as a single note.
+ */
+
+
+/* ============================================
+   1. TONAL ARCHITECTURE
+   ============================================
+   Every color family must have range — a light
+   expression and a dark anchor. A single flat tone
+   is a swatch. A tonal pair is a world.
+
+   The gap between light and dark should be wide
+   enough to feel like two distinct moments living
+   in the same family, not a gradient between them.
+
+   If a color only shows up once, it's an orphan.
+   Give it a sibling at a different altitude.
+*/
+
+:root {
+  --family-a-whisper: ;    /* lifted, desaturated, airy */
+  --family-a-weight: ;     /* grounded, dense, committed */
+
+  --family-b-whisper: ;
+  --family-b-weight: ;
+
+  /* Both families must have internal range.
+     One family with range and one flat accent
+     makes the composition feel lopsided —
+     one side has depth, the other is decoration. */
+
+  /* The bridge — a warm neutral that commits
+     to neither family. It earns its presence
+     through texture or scale, not through color.
+     Often the largest single element. */
+  --neutral-bridge: ;
+}
+
+
+/* ============================================
+   2. FORM DUALISM
+   ============================================
+   Every composition needs a monolith and
+   an irregularity.
+
+   The monolith holds still. It's the thing
+   with confident edges, deliberate weight,
+   unapologetic solidity. A full-bleed block.
+   A hard rectangle. A serif at 72px.
+
+   The irregularity breathes. Soft boundaries,
+   organic edges, asymmetric presence.
+   A shape that looks decided but not measured.
+
+   They need each other. Monoliths alone are rigid.
+   Irregularity alone is unmoored. The tension
+   between them is where elegance lives.
+*/
+
+.monolith {
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  /* Earns space by being certain. */
+}
+
+.gesture {
+  border-radius: 40% 50% 45% 55% / 50% 40% 55% 45%;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  /* Earns space by being unexpected. */
+}
+
+/* If a section has a monolith, something nearby
+   must gesture. Check your layout for loneliness. */
+
+
+/* ============================================
+   3. TEXTURAL HIERARCHY
+   ============================================
+   Only one element per visible composition gets
+   to be the texture star. Everything else defers.
+
+   Two rich textures adjacent to each other
+   cancel out. Neither feels special. The eye
+   fatigues and stops reading either one.
+
+   If a surface is tactile — grain, noise, stipple,
+   weave — the surfaces around it should be smooth.
+   The smoothness is a gift. It makes the texture
+   feel more itself by contrast.
+*/
+
+.texture-primary {
+  /* The one surface that gets to be tactile.
+     Only one per visible viewport. Guard this. */
+}
+
+.texture-defers {
+  /* Smooth, flat, quiet. Not empty — restrained.
+     Its job is to make the primary surface
+     feel more interesting by contrast. */
+}
+
+.texture-subtle {
+  /* The middle ground. Not competing with the
+     primary texture, but not dead flat.
+     Tonal variation, slight relief, internal
+     movement that only reveals itself up close.
+     Use sparingly. This is carved detail,
+     not surface pattern. */
+}
+
+
+/* ============================================
+   4. INTERNAL ENERGY
+   ============================================
+   A shape without internal movement is a puddle.
+   A color block without variation is a loading screen.
+
+   Give large surfaces something happening inside them —
+   but tonally, not chromatically. Movement within
+   the same color family, not a new color. Shadow,
+   grain, subtle relief, slight value shifts.
+
+   Just enough to keep the eye moving without
+   sending it somewhere else.
+*/
+
+.has-internal-energy {
+  /* Not flat. Has life inside it, but the life
+     is quiet. The movement rewards attention
+     without demanding it. */
+}
+
+.deliberately-flat {
+  /* Flat on purpose, because something next to it
+     has energy. The flatness is a compositional
+     choice, not an oversight. Solid next to
+     gestural. Silence next to music. */
+}
+
+
+/* ============================================
+   5. THE BRIDGE PRINCIPLE
+   ============================================
+   Between any two opposing forces — warm/cool,
+   structured/organic, heavy/light — place something
+   that belongs to neither.
+
+   It should be:
+   - Neutral in hue
+   - Rich in texture or materiality
+   - Generous in scale
+
+   The largest element in a composition is often
+   the most neutral. That's not timidity.
+   That's architecture. It gives opposing forces
+   permission to be themselves without colliding.
+
+   In layout: this is your whitespace, your body text
+   between display elements, your neutral container
+   that holds two strong voices without picking a side.
+*/
+
+
+/* ============================================
+   6. COLLECTED vs. DESIGNED
+   ============================================
+   Designed things match. Collected things rhyme.
+
+   Matching: every instance of a color is the
+   same hex value. Every radius is the same token.
+   Everything was decided once and propagated.
+
+   Rhyming: instances share a mood but not
+   a measurement. They feel related but not
+   generated. A heading and a border might both
+   be green but not the same green. The variation
+   suggests decisions made over time by someone
+   with taste, not output by a system.
+
+   Let your color families have cousins, not clones.
+   Vary by lightness, saturation, or opacity.
+   Let the relationships be felt, not measured.
+*/
+
+
+/* ============================================
+   7. WEIGHT DISTRIBUTION
+   ============================================
+   A composition fails when all the visual weight
+   collects at one altitude.
+
+   Alternate light and dark through vertical space.
+   If one layer is heavy, the layer above or below
+   it must breathe. The eye needs altitude changes
+   or the whole thing compresses into mud.
+
+   No two adjacent layers should share the same
+   visual density. If they do, they merge into
+   one undifferentiated mass and the spatial
+   structure collapses.
+*/
+
+.layer-ground  { /* the base — dark or light, but opposite of what sits on it */ }
+.layer-surface { /* mediates between ground and objects */ }
+.layer-object  { /* carries the primary texture and interaction */ }
+.layer-context { /* the background plane — can be a monolith */ }
+.layer-air     { /* the top — where accent moments and light live */ }
+
+
+/* ============================================
+   8. COMPOSITIONAL MIRRORING
+   ============================================
+   The most sophisticated move: both color families
+   use the same structural logic, expressed through
+   completely different elements.
+
+   If your warm family is organized as
+   solid mass + gestural accent, your cool family
+   should run that same pattern somewhere —
+   its own solid mass + its own gestural accent.
+
+   The symmetry is in the logic, not the layout.
+   Not left/right balance. Not visual matching.
+   Structural rhyme across different materials.
+
+   Nobody sees it consciously. Everyone feels it.
+   It's why a space or a layout reads as
+   "considered" without being "coordinated."
+*/
+
+
+/* ============================================
+   9. DESATURATION AS SOPHISTICATION
+   ============================================
+   When two complementary colors meet at full
+   saturation, they vibrate and compete. When they
+   meet desaturated, they converse.
+
+   Muted tones share a quality — they all look
+   like they've been through the same atmosphere.
+   Dusty, chalky, mineral, sun-faded. This is
+   what makes a palette feel collected rather
+   than assembled. The colors don't match.
+   They've just weathered the same life.
+
+   If a color feels too loud, don't swap it.
+   Grey it down until it stops shouting and
+   starts belonging.
+*/
+
+
+/* ============================================
+   10. SCALE CONVICTION
+   ============================================
+   Undersized elements look like mistakes.
+   Oversized elements look like decisions.
+
+   When placing a visual element, the instinct
+   is usually to make it a little smaller than
+   the space allows. Resist that. Go bigger
+   than feels safe. A generous element reads
+   as confident. A cautious element reads as
+   afterthought.
+
+   This applies to whitespace too. Generous
+   margins are a form of conviction. Tight
+   margins are a form of anxiety.
+*/
+
+
+/* ============================================
+   11. THE ASPIRATION TEST
+   ============================================
+   If everything in a composition is precious,
+   nothing lands. Elegance is not the accumulation
+   of beautiful things. It's the editing.
+
+   For every element that gets to be a moment —
+   textured, colored, shaped, detailed — something
+   else must agree to be quiet. The quiet things
+   are not lesser. They're the reason the moments
+   read as moments.
+
+   A room full of statement pieces is a showroom.
+   A room with one statement piece and the
+   intelligence to support it is a home.
+
+   Before adding anything, ask:
+   is this earning a role, or is it auditioning?
+*/

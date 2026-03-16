@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VDN — Design Studio</title>
+  <meta name="description" content="VDN is a full-service design studio offering curation, interior design consultation, CAD services, and decor. Founded by a technical designer with an eye for collected elegance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       COLLECTED ELEGANCE — VDN DESIGN STUDIO
+       ============================================
+       Tonal Architecture: two families + a bridge.
+       Nothing exists as a single note.
+    */
+
+    :root {
+      /* Family A — warm earth */
+      --earth-whisper: #E2D5C7;
+      --earth-weight: #5C3D2E;
+      --earth-mid: #A68B72;
+
+      /* Family B — muted sage */
+      --sage-whisper: #CDD8CE;
+      --sage-weight: #2D3B30;
+      --sage-mid: #7A9A7E;
+
+      /* The bridge — warm neutral that commits to neither */
+      --bridge: #C4B5A4;
+      --bridge-light: #F5F0EB;
+      --bridge-deep: #3A3530;
+
+      /* Text */
+      --ink: #1C1B18;
+      --ink-soft: #5A5650;
+      --ink-faint: #8A847C;
+
+      /* Utility */
+      --page: #FAF7F3;
+      --page-warm: #F0EAE2;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ---- Grain overlay — one textural gesture for the whole page ---- */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ============================================
+       TYPOGRAPHY — Fraunces for display, Outfit for body
+       Fraunces: a soft serif with optical sizing,
+       wonky and warm. Not cold, not generic.
+       ============================================ */
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .display-xl {
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+
+    .display-lg {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .display-md {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .body-lg {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    .label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       NAVIGATION — minimal, confident
+       ============================================ */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.8rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+    }
+
+    .nav-mark {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: #fff;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* ============================================
+       HERO — The monolith. Confident, still, generous.
+       ============================================ */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+      padding-bottom: 6rem;
+      background: var(--bridge-deep);
+      color: var(--page);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Internal energy — subtle tonal movement within the hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(92, 61, 46, 0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 85% 20%, rgba(45, 59, 48, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      letter-spacing: 0.04em;
+      color: var(--earth-whisper);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .hero-title {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-subtitle {
+      max-width: 480px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--bridge);
+    }
+
+    /* Gestural accent — organic shape in the hero */
+    .hero-gesture {
+      position: absolute;
+      top: 12%;
+      right: 8%;
+      width: clamp(200px, 30vw, 450px);
+      height: clamp(240px, 35vw, 520px);
+      background: var(--earth-weight);
+      border-radius: 42% 58% 38% 62% / 56% 40% 60% 44%;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    /* ============================================
+       ABOUT — Split composition. Text + gesture.
+       ============================================ */
+
+    .about {
+      padding: clamp(5rem, 10vw, 10rem) 3rem;
+      background: var(--page);
+    }
+
+    .about-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+    }
+
+    /* Image placeholder — the texture star of this section */
+    .about-image {
+      width: 100%;
+      height: 100%;
+      background: var(--earth-whisper);
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(145deg, var(--earth-mid) 0%, var(--earth-whisper) 50%, var(--bridge) 100%);
+      opacity: 0.6;
+    }
+
+    .about-image-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 1;
+      color: var(--ink-soft);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Small organic accent near the image */
+    .about-accent {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 100px;
+      height: 100px;
+      background: var(--sage-whisper);
+      border-radius: 50% 40% 55% 45% / 45% 55% 40% 50%;
+      z-index: -1;
+    }
+
+    .about-text {
+      max-width: 500px;
+    }
+
+    .about-text .label {
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .about-text h2 {
+      margin-bottom: 2rem;
+      color: var(--earth-weight);
+    }
+
+    .about-text p {
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ============================================
+       SERVICES — Alternating weight distribution
+       ============================================ */
+
+    .services {
+      padding: clamp(5rem, 10vw, 10rem) 3rem;
+      background: var(--sage-weight);
+      color: var(--page);
+      position: relative;
+    }
+
+    .services-header {
+      max-width: 1200px;
+      margin: 0 auto clamp(4rem, 6vw, 7rem);
+    }
+
+    .services-header .label {
+      color: var(--sage-mid);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .services-header h2 {
+      color: var(--sage-whisper);
+      max-width: 600px;
+    }
+
+    .services-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .service-card {
+      padding: clamp(2rem, 3vw, 3.5rem);
+      background: var(--sage-weight);
+      transition: background 0.5s ease;
+    }
+
+    .service-card:hover {
+      background: rgba(45, 59, 48, 0.6);
+    }
+
+    .service-number {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 2.5rem;
+      color: var(--sage-mid);
+      opacity: 0.4;
+      margin-bottom: 1.5rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--sage-whisper);
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--sage-mid);
+    }
+
+    /* ============================================
+       PHILOSOPHY — The bridge section. Neutral, generous.
+       ============================================ */
+
+    .philosophy {
+      padding: clamp(6rem, 12vw, 14rem) 3rem;
+      background: var(--page-warm);
+      text-align: center;
+      position: relative;
+    }
+
+    .philosophy-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .philosophy .label {
+      color: var(--ink-faint);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .philosophy blockquote {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+      line-height: 1.35;
+      color: var(--earth-weight);
+      letter-spacing: -0.01em;
+    }
+
+    .philosophy-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--bridge);
+      margin: 2.5rem auto 0;
+      border: none;
+    }
+
+    /* ============================================
+       PORTFOLIO — Asymmetric grid. Collected, not matched.
+       ============================================ */
+
+    .portfolio {
+      padding: clamp(5rem, 10vw, 10rem) 3rem;
+      background: var(--page);
+    }
+
+    .portfolio-header {
+      max-width: 1200px;
+      margin: 0 auto clamp(4rem, 6vw, 7rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .portfolio-header .label {
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .portfolio-header h2 {
+      color: var(--ink);
+    }
+
+    .portfolio-header-right {
+      color: var(--ink-faint);
+      font-size: 0.85rem;
+    }
+
+    .portfolio-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .portfolio-item-inner {
+      aspect-ratio: var(--ratio, 4/3);
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .portfolio-item:hover .portfolio-item-inner {
+      transform: scale(0.97);
+    }
+
+    /* Each portfolio item gets its own tonal treatment — collected, not matched */
+    .portfolio-item:nth-child(1) .portfolio-item-inner {
+      --bg: var(--earth-whisper);
+      --ratio: 4/3;
+    }
+
+    .portfolio-item:nth-child(2) .portfolio-item-inner {
+      --bg: var(--sage-whisper);
+      --ratio: 3/4;
+    }
+
+    .portfolio-item:nth-child(3) .portfolio-item-inner {
+      --bg: var(--bridge);
+      --ratio: 16/10;
+    }
+
+    .portfolio-item:nth-child(4) .portfolio-item-inner {
+      --bg: var(--page-warm);
+      --ratio: 1/1;
+    }
+
+    /* Project labels */
+    .portfolio-item-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28, 27, 24, 0.3) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .portfolio-item:hover .portfolio-item-inner::after {
+      opacity: 1;
+    }
+
+    .portfolio-meta {
+      padding: 1.2rem 0 0;
+    }
+
+    .portfolio-meta h3 {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .portfolio-meta span {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
+    }
+
+    /* Grid layout — asymmetric */
+    .portfolio-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .portfolio-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .portfolio-item:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .portfolio-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+    /* ============================================
+       CONTACT — Warm, inviting, grounded.
+       ============================================ */
+
+    .contact {
+      padding: clamp(5rem, 10vw, 10rem) 3rem;
+      background: var(--earth-weight);
+      color: var(--page);
+      position: relative;
+    }
+
+    .contact-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .contact-left .label {
+      color: var(--earth-mid);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .contact-left h2 {
+      color: var(--earth-whisper);
+      margin-bottom: 2rem;
+    }
+
+    .contact-left p {
+      color: var(--bridge);
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--earth-mid);
+      margin-bottom: 0.6rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(196, 181, 164, 0.25);
+      color: var(--page);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-bottom-color: var(--earth-whisper);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(196, 181, 164, 0.35);
+    }
+
+    .submit-btn {
+      align-self: flex-start;
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 1px solid var(--bridge);
+      color: var(--earth-whisper);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--earth-whisper);
+      color: var(--earth-weight);
+      border-color: var(--earth-whisper);
+    }
+
+    .contact-right {
+      padding-top: 1rem;
+    }
+
+    .contact-detail {
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail .label {
+      color: var(--earth-mid);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .contact-detail a,
+    .contact-detail p {
+      color: var(--bridge);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact-detail a {
+      border-bottom: 1px solid rgba(196, 181, 164, 0.2);
+      padding-bottom: 1px;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-detail a:hover {
+      border-bottom-color: var(--earth-whisper);
+    }
+
+    /* ============================================
+       FOOTER — quiet, grounded
+       ============================================ */
+
+    footer {
+      padding: 2.5rem 3rem;
+      background: var(--bridge-deep);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+    }
+
+    footer .footer-mark {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      color: var(--bridge);
+    }
+
+    /* ============================================
+       SCROLL REVEAL — elements earn their entrance
+       ============================================ */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================
+       RESPONSIVE — Scale conviction at every size
+       ============================================ */
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 1.5rem 2rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--bridge-deep);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 99;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+      }
+
+      .nav-toggle {
+        display: block;
+        z-index: 101;
+      }
+
+      .hero {
+        padding: 2rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-gesture {
+        top: 8%;
+        right: -5%;
+        opacity: 0.15;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-visual {
+        max-width: 400px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-item:nth-child(1),
+      .portfolio-item:nth-child(2),
+      .portfolio-item:nth-child(3),
+      .portfolio-item:nth-child(4) {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding: 1.5rem;
+        padding-bottom: 3rem;
+      }
+
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      .about,
+      .services,
+      .portfolio,
+      .philosophy,
+      .contact {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="nav-mark">VDN</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-gesture"></div>
+    <div class="hero-content">
+      <p class="hero-tagline reveal">Design Studio &amp; Curation</p>
+      <h1 class="display-xl hero-title reveal reveal-delay-1">VDN</h1>
+      <p class="hero-subtitle reveal reveal-delay-2">
+        Curated spaces. Technical precision.<br>
+        Design that feels considered, not coordinated.
+      </p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-image">
+          <span class="about-image-label">Portrait</span>
+        </div>
+        <div class="about-accent"></div>
+      </div>
+      <div class="about-text">
+        <span class="label reveal">About</span>
+        <h2 class="display-md reveal reveal-delay-1">An eye for<br>what belongs</h2>
+        <p class="body-lg reveal reveal-delay-2">
+          VDN is a full-service design studio rooted in the belief that great spaces aren't assembled — they're curated. Every element earns its place. Every decision is intentional.
+        </p>
+        <p class="body-lg reveal reveal-delay-3">
+          With a background in technical design and years of experience translating vision into precise, buildable reality, VDN bridges the gap between aspiration and execution — bringing together the art of curation with the rigor of technical fluency.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <span class="label reveal">Services</span>
+      <h2 class="display-lg reveal reveal-delay-1">What we do</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-number">01</span>
+        <h3>Design Consultation</h3>
+        <p>Comprehensive design direction for residential and commercial spaces. From concept through completion, we guide every aesthetic and functional decision.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-number">02</span>
+        <h3>Space Curation</h3>
+        <p>Selecting and sourcing furnishings, materials, art, and objects that create a cohesive narrative. Not decoration — curation with intention and context.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-number">03</span>
+        <h3>Technical Drawing &amp; CAD</h3>
+        <p>Detailed technical drawings, space planning, and CAD documentation in Revit, AutoCAD, and Inventor. Precision that supports the design vision.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-number">04</span>
+        <h3>Decor &amp; Styling</h3>
+        <p>The final layer that brings a space to life. Thoughtful placement of objects, textiles, and art that transforms rooms into environments that feel collected over time.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <span class="service-number">05</span>
+        <h3>Material &amp; Finish Selection</h3>
+        <p>Expert guidance on materials, finishes, and palettes. We source options that serve both the aesthetic vision and practical requirements of every project.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-5">
+        <span class="service-number">06</span>
+        <h3>Project Visualization</h3>
+        <p>Renderings and visual presentations that communicate design intent clearly — helping clients see and feel the space before a single element is placed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <span class="label reveal">Philosophy</span>
+      <blockquote class="reveal reveal-delay-1">
+        A room full of statement pieces is a showroom. A room with one statement piece and the intelligence to support it is a home.
+      </blockquote>
+      <hr class="philosophy-rule reveal reveal-delay-2">
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <span class="label reveal">Selected Work</span>
+        <h2 class="display-lg reveal reveal-delay-1">Portfolio</h2>
+      </div>
+      <p class="portfolio-header-right reveal reveal-delay-2">Featured projects</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item reveal">
+        <div class="portfolio-item-inner"></div>
+        <div class="portfolio-meta">
+          <h3>Sycamore Residence</h3>
+          <span>Full curation &middot; Residential</span>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-1">
+        <div class="portfolio-item-inner"></div>
+        <div class="portfolio-meta">
+          <h3>Elm &amp; Third</h3>
+          <span>Design consultation &middot; Commercial</span>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-2">
+        <div class="portfolio-item-inner"></div>
+        <div class="portfolio-meta">
+          <h3>The Weaver Project</h3>
+          <span>Styling &amp; decor &middot; Residential</span>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-3">
+        <div class="portfolio-item-inner"></div>
+        <div class="portfolio-meta">
+          <h3>Studio Loft</h3>
+          <span>Space planning &amp; CAD &middot; Mixed-use</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <span class="label reveal">Get in Touch</span>
+        <h2 class="display-lg reveal reveal-delay-1">Let's start<br>a conversation</h2>
+        <p class="body-lg reveal reveal-delay-2">
+          Every project begins with a conversation about what you're looking for and how we can bring it to life. Reach out — we'd love to hear about your space.
+        </p>
+        <form class="contact-form reveal reveal-delay-3" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-right reveal reveal-delay-2">
+        <div class="contact-detail">
+          <span class="label">Email</span>
+          <a href="mailto:hello@vdnstudio.com">hello@vdnstudio.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Based In</span>
+          <p>Available for projects nationwide</p>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Social</span>
+          <p>
+            <a href="#">Instagram</a><br>
+            <a href="#">Pinterest</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-mark">VDN</span>
+    <p>&copy; 2026 VDN Design Studio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal — elements earn their entrance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
