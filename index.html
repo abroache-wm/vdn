@@ -58,6 +58,7 @@
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     body {
@@ -96,26 +97,26 @@
 
     .display-xl {
       font-family: 'Cinzel', serif;
-      font-size: clamp(3.5rem, 10vw, 9rem);
+      font-size: clamp(2.8rem, 10vw, 9rem);
       font-weight: 700;
       letter-spacing: 0.06em;
       line-height: 0.95;
     }
 
     .display-lg {
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      font-size: clamp(1.6rem, 5vw, 4.5rem);
       letter-spacing: -0.02em;
       line-height: 1.05;
     }
 
     .display-md {
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
 
     .body-lg {
-      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      font-size: clamp(0.95rem, 1.5vw, 1.2rem);
       line-height: 1.8;
     }
 
@@ -466,7 +467,7 @@
       font-family: 'Forum', serif;
       font-weight: 400;
       font-style: italic;
-      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.2rem, 3.5vw, 2.8rem);
       line-height: 1.35;
       color: var(--earth-weight);
       letter-spacing: -0.01em;
@@ -959,6 +960,7 @@
     @media (max-width: 500px) {
       .hero {
         padding: 1.5rem;
+        padding-top: 5rem;
         padding-bottom: 3rem;
       }
 
@@ -978,6 +980,34 @@
 
       .service-card {
         padding: 2rem 1.5rem;
+      }
+
+      .service-number {
+        font-size: 1.8rem;
+      }
+
+      .service-card h3 {
+        font-size: 1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .hero-gesture {
+        display: none;
+      }
+
+      .about-accent {
+        display: none;
+      }
+
+      .team-grid {
+        gap: 1.5rem;
+      }
+
+      .team-info h3 {
+        font-size: 0.85rem;
       }
 
       footer {
