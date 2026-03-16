@@ -6,12 +6,10 @@
   <title>VDN — Font Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=UnifrakturMaguntia&family=UnifrakturCook:wght@700&family=Pirata+One&family=Cinzel:wght@400;700&family=IM+Fell+English+SC&family=IM+Fell+DW+Pica+SC&family=Almendra+Display&family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Italiana&family=Grenze+Gotisch:wght@400;700&family=Texturina:opsz,wght@12..72,400;12..72,700&family=Eagle+Lake&family=Metamorphous&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Gambarino from Fontshare -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=UnifrakturMaguntia&family=UnifrakturCook:wght@700&family=Pirata+One&family=Cinzel:wght@400;700&family=IM+Fell+English+SC&family=IM+Fell+DW+Pica+SC&family=Almendra+Display&family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Italiana&family=Grenze+Gotisch:wght@400;700&family=Texturina:opsz,wght@12..72,400;12..72,700&family=Eagle+Lake&family=Metamorphous&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=DM+Serif+Display&family=Abril+Fatface&family=Yeseva+One&family=Libre+Caslon+Display&family=Cardo:wght@400;700&family=Spectral:wght@400;700&family=Forum&family=Della+Respira&family=Sorts+Mill+Goudy&family=Old+Standard+TT:wght@400;700&family=Bellefair&family=Caudex:wght@400;700&family=Fondamento&family=Macondo&family=Vast+Shadow&family=Baskervville&family=Crimson+Pro:wght@400;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Hagelslag palette — deep chocolate, butter, honey */
       --chocolate: #3B2314;
       --chocolate-mid: #6B3E26;
       --chocolate-light: #8B5E3C;
@@ -26,14 +24,9 @@
       --ink-faint: #9A8D7E;
     }
 
-    *, *::before, *::after {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -42,9 +35,9 @@
       background: var(--bread);
       line-height: 1.6;
       overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
     }
 
-    /* Grain */
     body::after {
       content: '';
       position: fixed;
@@ -55,6 +48,71 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       background-size: 200px;
     }
+
+    /* ---- Themes applied to body ---- */
+    body.theme-light {
+      background: var(--bread);
+      color: var(--chocolate);
+    }
+    body.theme-light .font-card-preview,
+    body.theme-light .comparison-vdn,
+    body.theme-light .large-preview-text { color: var(--chocolate); }
+
+    body.theme-cream {
+      background: var(--cream);
+      color: var(--chocolate);
+    }
+    body.theme-cream .font-card-preview,
+    body.theme-cream .comparison-vdn,
+    body.theme-cream .large-preview-text { color: var(--chocolate); }
+    body.theme-cream .font-card:hover { background: var(--bread); }
+    body.theme-cream .comparison-item { background: var(--bread); }
+    body.theme-cream .controls { background: var(--butter-light); }
+
+    body.theme-honey {
+      background: var(--honey);
+      color: var(--chocolate);
+    }
+    body.theme-honey .font-card-preview,
+    body.theme-honey .comparison-vdn,
+    body.theme-honey .large-preview-text { color: var(--chocolate); }
+    body.theme-honey .font-card:hover { background: var(--honey-light); }
+    body.theme-honey .font-card.selected { background: var(--butter); }
+    body.theme-honey .comparison-item { background: var(--honey-light); }
+    body.theme-honey .comparison-item:hover { background: var(--butter); }
+    body.theme-honey .controls { background: var(--honey-light); }
+    body.theme-honey .page-header { border-bottom-color: var(--chocolate-mid); }
+    body.theme-honey .category h2 { border-bottom-color: var(--chocolate-mid); color: var(--chocolate-mid); }
+    body.theme-honey .controls { border-bottom-color: var(--chocolate-mid); }
+
+    body.theme-dark {
+      background: var(--chocolate);
+      color: var(--cream);
+    }
+    body.theme-dark .font-card-preview,
+    body.theme-dark .comparison-vdn,
+    body.theme-dark .large-preview-text { color: var(--cream); }
+    body.theme-dark .font-card:hover { background: var(--chocolate-mid); }
+    body.theme-dark .font-card.selected { background: var(--chocolate-mid); }
+    body.theme-dark .comparison-item { background: var(--chocolate-mid); }
+    body.theme-dark .comparison-item:hover { background: var(--chocolate-light); }
+    body.theme-dark .comparison { background: rgba(0,0,0,0.15); border-top-color: rgba(255,255,255,0.08); }
+    body.theme-dark .controls { background: rgba(0,0,0,0.15); border-bottom-color: rgba(255,255,255,0.08); }
+    body.theme-dark .page-header { border-bottom-color: rgba(255,255,255,0.08); }
+    body.theme-dark .page-header h1 { color: var(--cream); }
+    body.theme-dark .page-header a { color: var(--honey-light); border-bottom-color: rgba(255,255,255,0.1); }
+    body.theme-dark .category h2 { border-bottom-color: rgba(255,255,255,0.08); color: var(--honey-light); }
+    body.theme-dark .font-card-name { color: var(--honey-light); }
+    body.theme-dark .font-card-source { color: var(--chocolate-light); }
+    body.theme-dark .font-card-tag.free { border-color: var(--honey); color: var(--honey); }
+    body.theme-dark .font-card-tag.paid { border-color: var(--chocolate-light); color: var(--chocolate-light); }
+    body.theme-dark .control-group label { color: var(--honey-light); }
+    body.theme-dark .control-group input[type="text"] { background: var(--chocolate-mid); border-color: var(--chocolate-light); color: var(--cream); }
+    body.theme-dark .size-value { color: var(--honey-light); }
+    body.theme-dark .comparison-name { color: var(--honey-light); }
+    body.theme-dark .comparison h2 { color: var(--honey-light); }
+    body.theme-dark .large-preview { background: #1a0f08; }
+    body.theme-dark .font-card-source a { color: var(--honey); }
 
     /* ---- Header ---- */
     .page-header {
@@ -101,6 +159,7 @@
       align-items: center;
       border-bottom: 1px solid var(--cream);
       background: var(--cream);
+      transition: background 0.5s;
     }
 
     .control-group {
@@ -126,12 +185,10 @@
       color: var(--ink);
       outline: none;
       width: 200px;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, background 0.5s, color 0.5s;
     }
 
-    .control-group input[type="text"]:focus {
-      border-color: var(--honey);
-    }
+    .control-group input[type="text"]:focus { border-color: var(--honey); }
 
     .control-group input[type="range"] {
       width: 160px;
@@ -159,20 +216,14 @@
     }
 
     .theme-btn:hover { transform: scale(1.1); }
-
-    .theme-btn.active {
-      box-shadow: 0 0 0 2px var(--chocolate);
-    }
-
+    .theme-btn.active { box-shadow: 0 0 0 2px var(--chocolate); }
     .theme-btn.light { background: var(--bread); }
     .theme-btn.cream { background: var(--cream); }
     .theme-btn.honey { background: var(--honey); }
     .theme-btn.dark { background: var(--chocolate); }
 
-    /* ---- Category Headers ---- */
-    .category {
-      padding: 2.5rem 3rem 0.8rem;
-    }
+    /* ---- Category ---- */
+    .category { padding: 2.5rem 3rem 0.8rem; }
 
     .category h2 {
       font-family: 'Outfit', sans-serif;
@@ -183,6 +234,7 @@
       color: var(--ink-faint);
       padding-bottom: 0.8rem;
       border-bottom: 1px solid var(--cream);
+      transition: color 0.5s, border-color 0.5s;
     }
 
     /* ---- Font Cards ---- */
@@ -201,13 +253,8 @@
       border-bottom: 1px solid rgba(0,0,0,0.04);
     }
 
-    .font-card:hover {
-      background: var(--cream);
-    }
-
-    .font-card.selected {
-      background: var(--butter-light);
-    }
+    .font-card:hover { background: var(--cream); }
+    .font-card.selected { background: var(--butter-light); }
 
     .font-card-meta {
       display: flex;
@@ -222,6 +269,7 @@
       text-transform: uppercase;
       font-weight: 500;
       color: var(--ink-faint);
+      transition: color 0.5s;
     }
 
     .font-card-tag {
@@ -231,16 +279,18 @@
       padding: 0.2rem 0.6rem;
       border: 1px solid var(--cream);
       color: var(--ink-faint);
+      transition: color 0.5s, border-color 0.5s;
     }
 
     .font-card-tag.free { border-color: var(--honey); color: var(--chocolate-mid); }
     .font-card-tag.paid { border-color: var(--chocolate-light); color: var(--chocolate-light); }
 
     .font-card-preview {
+      font-size: 4.5rem;
       line-height: 1;
       letter-spacing: -0.02em;
       word-break: break-word;
-      transition: font-size 0.3s ease;
+      transition: font-size 0.3s ease, color 0.5s;
       color: var(--chocolate);
     }
 
@@ -248,6 +298,7 @@
       margin-top: 1rem;
       font-size: 0.7rem;
       color: var(--ink-faint);
+      transition: color 0.5s;
     }
 
     .font-card-source a {
@@ -257,9 +308,7 @@
       transition: border-color 0.3s;
     }
 
-    .font-card-source a:hover {
-      border-bottom-color: var(--honey);
-    }
+    .font-card-source a:hover { border-bottom-color: var(--honey); }
 
     /* ---- Large Preview ---- */
     .large-preview {
@@ -273,14 +322,13 @@
       transition: background 0.5s, color 0.5s;
       background: var(--chocolate);
       color: var(--cream);
-      position: relative;
     }
 
     .large-preview-text {
       font-size: clamp(5rem, 15vw, 14rem);
       line-height: 0.9;
       letter-spacing: -0.03em;
-      transition: font-family 0.1s;
+      transition: font-family 0.1s, color 0.5s;
     }
 
     .large-preview-label {
@@ -307,6 +355,7 @@
       padding: 3rem;
       background: var(--cream);
       border-top: 1px solid var(--honey-light);
+      transition: background 0.5s, border-color 0.5s;
     }
 
     .comparison h2 {
@@ -317,12 +366,13 @@
       text-transform: uppercase;
       color: var(--ink-faint);
       margin-bottom: 2rem;
+      transition: color 0.5s;
     }
 
     .comparison-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
     }
 
     .comparison-item {
@@ -333,16 +383,15 @@
       cursor: pointer;
     }
 
-    .comparison-item:hover {
-      background: var(--butter-light);
-    }
+    .comparison-item:hover { background: var(--butter-light); }
 
     .comparison-vdn {
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 1;
       letter-spacing: -0.02em;
       margin-bottom: 0.8rem;
       color: var(--chocolate);
+      transition: color 0.5s;
     }
 
     .comparison-name {
@@ -351,46 +400,22 @@
       text-transform: uppercase;
       font-weight: 500;
       color: var(--ink-faint);
+      transition: color 0.5s;
     }
 
-    /* Theme variations */
-    .large-preview.theme-light {
-      background: var(--bread);
-      color: var(--chocolate);
-    }
-
-    .large-preview.theme-cream {
-      background: var(--cream);
-      color: var(--chocolate);
-    }
-
-    .large-preview.theme-honey {
-      background: var(--honey);
-      color: var(--chocolate);
-    }
-
-    .large-preview.theme-dark {
-      background: var(--chocolate);
-      color: var(--cream);
-    }
-
-    /* Responsive */
+    /* ---- Responsive ---- */
     @media (max-width: 700px) {
       .page-header, .controls, .category, .font-grid, .comparison, .large-preview {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
-
-      .font-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .font-grid { grid-template-columns: 1fr; }
       .controls { gap: 1rem; }
       .theme-toggles { margin-left: 0; }
     }
   </style>
 </head>
-<body>
+<body class="theme-light">
 
   <header class="page-header">
     <h1>VDN — Font Preview</h1>
@@ -408,12 +433,12 @@
       <span class="size-value" id="sizeValue">4.5rem</span>
     </div>
     <div class="control-group">
-      <label>Preview Background</label>
+      <label>Background</label>
       <div class="theme-toggles">
-        <button class="theme-btn light" data-theme="theme-light" title="Bread"></button>
+        <button class="theme-btn light active" data-theme="theme-light" title="Bread"></button>
         <button class="theme-btn cream" data-theme="theme-cream" title="Cream"></button>
         <button class="theme-btn honey" data-theme="theme-honey" title="Honey"></button>
-        <button class="theme-btn dark active" data-theme="theme-dark" title="Chocolate"></button>
+        <button class="theme-btn dark" data-theme="theme-dark" title="Chocolate"></button>
       </div>
     </div>
   </div>
@@ -427,7 +452,7 @@
         <span class="font-card-tag free">Free — Google Fonts</span>
       </div>
       <div class="font-card-preview" style="font-family: 'Fraunces', serif;">VDN</div>
-      <div class="font-card-source">Soft optical serif with wonky warmth. <a href="https://fonts.google.com/specimen/Fraunces" target="_blank">View &rarr;</a></div>
+      <div class="font-card-source">Soft optical serif. Wonky warmth. <a href="https://fonts.google.com/specimen/Fraunces" target="_blank">View &rarr;</a></div>
     </div>
     <div class="font-card" data-font="'Gambarino', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
@@ -458,6 +483,22 @@
   <!-- Elegant & Editorial -->
   <div class="category"><h2>Elegant &amp; Editorial</h2></div>
   <div class="font-grid">
+    <div class="font-card" data-font="'Bodoni Moda', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Bodoni Moda</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Bodoni Moda', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">High-contrast Didone. Magazine masthead energy.</div>
+    </div>
+    <div class="font-card" data-font="'Playfair Display', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Playfair Display</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Playfair Display', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Transitional serif. Editorial authority.</div>
+    </div>
     <div class="font-card" data-font="'Cormorant Garamond', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
         <span class="font-card-name">Cormorant Garamond</span>
@@ -466,13 +507,37 @@
       <div class="font-card-preview" style="font-family: 'Cormorant Garamond', serif; font-weight: 600;">VDN</div>
       <div class="font-card-source">Refined display Garamond. Beautiful contrast.</div>
     </div>
-    <div class="font-card" data-font="'Playfair Display', serif" onclick="selectFont(this)">
+    <div class="font-card" data-font="'Abril Fatface', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
-        <span class="font-card-name">Playfair Display</span>
+        <span class="font-card-name">Abril Fatface</span>
         <span class="font-card-tag free">Free</span>
       </div>
-      <div class="font-card-preview" style="font-family: 'Playfair Display', serif; font-weight: 700;">VDN</div>
-      <div class="font-card-source">High-contrast transitional serif. Editorial authority.</div>
+      <div class="font-card-preview" style="font-family: 'Abril Fatface', serif;">VDN</div>
+      <div class="font-card-source">Bold Didone display. Poster-weight presence.</div>
+    </div>
+    <div class="font-card" data-font="'DM Serif Display', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">DM Serif Display</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'DM Serif Display', serif;">VDN</div>
+      <div class="font-card-source">Clean serif display. Modern editorial.</div>
+    </div>
+    <div class="font-card" data-font="'Yeseva One', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Yeseva One</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Yeseva One', serif;">VDN</div>
+      <div class="font-card-source">Elegant display serif. Feminine authority.</div>
+    </div>
+    <div class="font-card" data-font="'Libre Caslon Display', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Libre Caslon Display</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Libre Caslon Display', serif;">VDN</div>
+      <div class="font-card-source">Classic Caslon for display. Timeless weight.</div>
     </div>
     <div class="font-card" data-font="'Cinzel', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
@@ -488,7 +553,47 @@
         <span class="font-card-tag free">Free</span>
       </div>
       <div class="font-card-preview" style="font-family: 'Italiana', serif;">VDN</div>
-      <div class="font-card-source">Thin, sophisticated serif. Quiet luxury.</div>
+      <div class="font-card-source">Thin serif. Quiet luxury.</div>
+    </div>
+    <div class="font-card" data-font="'Bellefair', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Bellefair</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Bellefair', serif;">VDN</div>
+      <div class="font-card-source">Modern elegant serif. Light, refined.</div>
+    </div>
+    <div class="font-card" data-font="'Spectral', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Spectral</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Spectral', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Modern literary serif. Sharp and composed.</div>
+    </div>
+    <div class="font-card" data-font="'Crimson Pro', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Crimson Pro</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Crimson Pro', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Classic old-style. Bookish warmth.</div>
+    </div>
+    <div class="font-card" data-font="'Baskervville', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Baskervville</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Baskervville', serif;">VDN</div>
+      <div class="font-card-source">Baskerville revival. Transitional English classic.</div>
+    </div>
+    <div class="font-card" data-font="'Sorts Mill Goudy', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Sorts Mill Goudy</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Sorts Mill Goudy', serif;">VDN</div>
+      <div class="font-card-source">Goudy Old Style revival. Warm humanist character.</div>
     </div>
   </div>
 
@@ -501,7 +606,7 @@
         <span class="font-card-tag free">Free</span>
       </div>
       <div class="font-card-preview" style="font-family: 'Grenze Gotisch', serif; font-weight: 700;">VDN</div>
-      <div class="font-card-source">Gothic display. Saltburn energy. Dark, ornate, old world.</div>
+      <div class="font-card-source">Gothic display. Saltburn energy. Dark, ornate.</div>
     </div>
     <div class="font-card" data-font="'Texturina', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
@@ -509,7 +614,7 @@
         <span class="font-card-tag free">Free</span>
       </div>
       <div class="font-card-preview" style="font-family: 'Texturina', serif; font-weight: 700;">VDN</div>
-      <div class="font-card-source">Textura-inspired. Medieval manuscript meets modern type.</div>
+      <div class="font-card-source">Textura-inspired. Medieval meets modern.</div>
     </div>
     <div class="font-card" data-font="'Eagle Lake', serif" onclick="selectFont(this)">
       <div class="font-card-meta">
@@ -534,6 +639,38 @@
       </div>
       <div class="font-card-preview" style="font-family: 'Almendra Display', serif;">VDN</div>
       <div class="font-card-source">Medieval manuscript display. Ornate but structured.</div>
+    </div>
+    <div class="font-card" data-font="'Fondamento', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Fondamento</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Fondamento', serif;">VDN</div>
+      <div class="font-card-source">Calligraphic foundational hand. Manuscript heritage.</div>
+    </div>
+    <div class="font-card" data-font="'Macondo', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Macondo</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Macondo', serif;">VDN</div>
+      <div class="font-card-source">Decorative medieval display. Whimsical old world.</div>
+    </div>
+    <div class="font-card" data-font="'Della Respira', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Della Respira</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Della Respira', serif;">VDN</div>
+      <div class="font-card-source">Art Nouveau inspired. Ornamental elegance.</div>
+    </div>
+    <div class="font-card" data-font="'Caudex', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Caudex</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Caudex', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Medieval text face. Codex manuscript weight.</div>
     </div>
   </div>
 
@@ -580,6 +717,38 @@
       <div class="font-card-preview" style="font-family: 'IM Fell English SC', serif;">VDN</div>
       <div class="font-card-source">17th-century revival. Weathered historical texture.</div>
     </div>
+    <div class="font-card" data-font="'Old Standard TT', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Old Standard TT</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Old Standard TT', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">19th-century old style. Academic gravitas.</div>
+    </div>
+    <div class="font-card" data-font="'Cardo', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Cardo</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Cardo', serif; font-weight: 700;">VDN</div>
+      <div class="font-card-source">Scholarly old style. Bembo heritage.</div>
+    </div>
+    <div class="font-card" data-font="'Forum', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Forum</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Forum', serif;">VDN</div>
+      <div class="font-card-source">Classical inscriptional. Roman forum capitals.</div>
+    </div>
+    <div class="font-card" data-font="'Vast Shadow', serif" onclick="selectFont(this)">
+      <div class="font-card-meta">
+        <span class="font-card-name">Vast Shadow</span>
+        <span class="font-card-tag free">Free</span>
+      </div>
+      <div class="font-card-preview" style="font-family: 'Vast Shadow', serif;">VDN</div>
+      <div class="font-card-source">Shadow slab display. Victorian broadside weight.</div>
+    </div>
   </div>
 
   <!-- Side-by-side -->
@@ -589,7 +758,7 @@
   </div>
 
   <!-- Large Preview -->
-  <div class="large-preview theme-dark" id="largePreview">
+  <div class="large-preview" id="largePreview">
     <div class="large-preview-text" id="largePreviewText" style="font-family: 'Fraunces', serif;">VDN</div>
     <div class="large-preview-label" id="largePreviewLabel">Fraunces</div>
     <div class="large-preview-subtitle" id="largePreviewSubtitle" style="font-family: 'Fraunces', serif;">Design Studio & Curation</div>
@@ -608,23 +777,40 @@
     const allFonts = [
       { name: 'Fraunces', family: "'Fraunces', serif", weight: '400' },
       { name: 'Gambarino', family: "'Gambarino', serif", weight: '400' },
-      { name: 'Cormorant Garamond', family: "'Cormorant Garamond', serif", weight: '600' },
+      { name: 'Bodoni Moda', family: "'Bodoni Moda', serif", weight: '700' },
       { name: 'Playfair Display', family: "'Playfair Display', serif", weight: '700' },
+      { name: 'Cormorant Garamond', family: "'Cormorant Garamond', serif", weight: '600' },
+      { name: 'Abril Fatface', family: "'Abril Fatface', serif", weight: '400' },
+      { name: 'DM Serif Display', family: "'DM Serif Display', serif", weight: '400' },
+      { name: 'Yeseva One', family: "'Yeseva One', serif", weight: '400' },
+      { name: 'Libre Caslon Display', family: "'Libre Caslon Display', serif", weight: '400' },
       { name: 'Cinzel', family: "'Cinzel', serif", weight: '700' },
       { name: 'Italiana', family: "'Italiana', serif", weight: '400' },
+      { name: 'Bellefair', family: "'Bellefair', serif", weight: '400' },
+      { name: 'Spectral', family: "'Spectral', serif", weight: '700' },
+      { name: 'Crimson Pro', family: "'Crimson Pro', serif", weight: '700' },
+      { name: 'Baskervville', family: "'Baskervville', serif", weight: '400' },
+      { name: 'Sorts Mill Goudy', family: "'Sorts Mill Goudy', serif", weight: '400' },
       { name: 'Grenze Gotisch', family: "'Grenze Gotisch', serif", weight: '700' },
       { name: 'Texturina', family: "'Texturina', serif", weight: '700' },
       { name: 'Eagle Lake', family: "'Eagle Lake', serif", weight: '400' },
       { name: 'Metamorphous', family: "'Metamorphous', serif", weight: '400' },
       { name: 'Almendra Display', family: "'Almendra Display', serif", weight: '400' },
+      { name: 'Fondamento', family: "'Fondamento', serif", weight: '400' },
+      { name: 'Macondo', family: "'Macondo', serif", weight: '400' },
+      { name: 'Della Respira', family: "'Della Respira', serif", weight: '400' },
+      { name: 'Caudex', family: "'Caudex', serif", weight: '700' },
       { name: 'UnifrakturMaguntia', family: "'UnifrakturMaguntia', serif", weight: '400' },
       { name: 'UnifrakturCook', family: "'UnifrakturCook', serif", weight: '700' },
       { name: 'Pirata One', family: "'Pirata One', serif", weight: '400' },
       { name: 'IM Fell DW Pica SC', family: "'IM Fell DW Pica SC', serif", weight: '400' },
       { name: 'IM Fell English SC', family: "'IM Fell English SC', serif", weight: '400' },
+      { name: 'Old Standard TT', family: "'Old Standard TT', serif", weight: '700' },
+      { name: 'Cardo', family: "'Cardo', serif", weight: '700' },
+      { name: 'Forum', family: "'Forum', serif", weight: '400' },
+      { name: 'Vast Shadow', family: "'Vast Shadow', serif", weight: '400' },
     ];
 
-    // Build comparison grid
     const compGrid = document.getElementById('comparisonGrid');
     allFonts.forEach(f => {
       const div = document.createElement('div');
@@ -658,10 +844,6 @@
       });
     });
 
-    document.querySelectorAll('.font-card-preview').forEach(el => {
-      el.style.fontSize = '4.5rem';
-    });
-
     function selectFont(card) {
       cards.forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
@@ -673,11 +855,12 @@
       largePreview.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
+    // Theme toggles — apply to entire body
     document.querySelectorAll('.theme-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        largePreview.className = 'large-preview ' + btn.dataset.theme;
+        document.body.className = btn.dataset.theme;
       });
     });
   </script>
