@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VDN — Pricing</title>
+  <meta name="description" content="VDN Drafting & Interiors pricing for design consultation, technical drawing, CAD, visualization, material selection, space curation, and styling services.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Forum&family=Marcellus+SC&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       COLLECTED ELEGANCE — VDN PRICING
+       Same tonal architecture as index.
+       ============================================ */
+
+    :root {
+      --earth-whisper: #DDD5CB;
+      --earth-weight: #4A3728;
+      --earth-mid: #9A8474;
+
+      --sage-whisper: #D2D6CD;
+      --sage-weight: #3A3F35;
+      --sage-mid: #7B8572;
+
+      --bridge: #C2B8AA;
+      --bridge-light: #F0EBE4;
+      --bridge-deep: #2E2720;
+
+      --ink: #2E2720;
+      --ink-soft: #6B6158;
+      --ink-faint: #958C82;
+
+      --page: #F7F4F0;
+      --page-warm: #EDE8E1;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ---- Typography ---- */
+
+    h1, h2, h3, h4 {
+      font-family: 'Forum', serif;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .display-xl {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 10vw, 9rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 0.95;
+    }
+
+    .display-lg {
+      font-size: clamp(1.6rem, 5vw, 4.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .display-md {
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .body-lg {
+      font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    .label {
+      font-family: 'Marcellus SC', serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---- Navigation ---- */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--page);
+      border-bottom: 1px solid var(--earth-whisper);
+    }
+
+    .nav-mark {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.12em;
+      color: var(--earth-weight);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Marcellus SC', serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--earth-weight);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--earth-weight);
+      transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--earth-weight);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--earth-weight);
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* ---- Page Hero ---- */
+
+    .page-hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+      padding-top: 8rem;
+      padding-bottom: 5rem;
+      background: var(--bridge-deep);
+      color: var(--page);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 75% 70%, rgba(92, 61, 46, 0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 15% 30%, rgba(45, 59, 48, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-hero-content .label {
+      color: var(--earth-mid);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-hero-content h1 {
+      color: var(--earth-whisper);
+      margin-bottom: 2rem;
+    }
+
+    .page-hero-content p {
+      max-width: 520px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--bridge);
+    }
+
+    .page-hero-gesture {
+      position: absolute;
+      top: 15%;
+      right: 6%;
+      width: clamp(140px, 20vw, 320px);
+      height: clamp(170px, 24vw, 380px);
+      background: var(--earth-weight);
+      border-radius: 52% 48% 42% 58% / 46% 60% 40% 54%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    /* ---- Service Sections ---- */
+
+    .service-section {
+      padding: clamp(4rem, 8vw, 7rem) 3rem;
+      position: relative;
+    }
+
+    .service-section:nth-child(odd) {
+      background: var(--page);
+    }
+
+    .service-section:nth-child(even) {
+      background: var(--page-warm);
+    }
+
+    .service-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .service-left {
+      position: relative;
+    }
+
+    .service-number {
+      font-family: 'Forum', serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--earth-whisper);
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-section:nth-child(even) .service-number {
+      color: var(--bridge);
+    }
+
+    .service-left h2 {
+      font-family: 'Marcellus SC', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-left p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 440px;
+    }
+
+    .service-right {
+      padding-top: 0.5rem;
+    }
+
+    .rate-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .rate-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .rate-group-label {
+      font-family: 'Marcellus SC', serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .rate-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--earth-whisper);
+    }
+
+    .service-section:nth-child(even) .rate-line {
+      border-bottom-color: var(--bridge);
+    }
+
+    .rate-line:first-of-type {
+      border-top: 1px solid var(--earth-whisper);
+    }
+
+    .service-section:nth-child(even) .rate-line:first-of-type {
+      border-top-color: var(--bridge);
+    }
+
+    .rate-item {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    .rate-price {
+      font-family: 'Forum', serif;
+      font-size: 1.05rem;
+      color: var(--earth-weight);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .rate-note {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      margin-top: 0.6rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ---- Engagement / How We Work ---- */
+
+    .engagement {
+      padding: clamp(5rem, 10vw, 9rem) 3rem;
+      background: var(--sage-weight);
+      color: var(--page);
+      position: relative;
+    }
+
+    .engagement-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .engagement .label {
+      color: var(--sage-mid);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .engagement h2 {
+      color: var(--sage-whisper);
+      margin-bottom: clamp(3rem, 5vw, 5rem);
+      max-width: 600px;
+    }
+
+    .engagement-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .engagement-step {
+      padding: clamp(2rem, 3vw, 3rem);
+      background: var(--sage-weight);
+      transition: background 0.5s ease;
+    }
+
+    .engagement-step:hover {
+      background: rgba(45, 59, 48, 0.6);
+    }
+
+    .step-number {
+      font-family: 'Forum', serif;
+      font-size: 2rem;
+      color: var(--sage-mid);
+      opacity: 0.4;
+      margin-bottom: 1.2rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .engagement-step h3 {
+      font-family: 'Marcellus SC', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--sage-whisper);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .engagement-step p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--sage-mid);
+    }
+
+    /* ---- Fine Print / Terms ---- */
+
+    .terms {
+      padding: clamp(4rem, 8vw, 7rem) 3rem;
+      background: var(--page-warm);
+    }
+
+    .terms-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .terms-left .label {
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .terms-left h2 {
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .terms-left p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 440px;
+    }
+
+    .terms-right {
+      padding-top: 0.5rem;
+    }
+
+    .term-item {
+      margin-bottom: 2rem;
+    }
+
+    .term-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .term-item .label {
+      color: var(--ink-faint);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .term-item p {
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ---- CTA ---- */
+
+    .cta {
+      padding: clamp(6rem, 12vw, 12rem) 3rem;
+      background: var(--earth-weight);
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta .label {
+      color: var(--earth-mid);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .cta h2 {
+      color: var(--earth-whisper);
+      margin-bottom: 2rem;
+    }
+
+    .cta p {
+      color: var(--bridge);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 1px solid var(--bridge);
+      color: var(--earth-whisper);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .cta-btn:hover {
+      background: var(--earth-whisper);
+      color: var(--earth-weight);
+      border-color: var(--earth-whisper);
+    }
+
+    /* ---- Footer ---- */
+
+    footer {
+      padding: 2.5rem 3rem;
+      background: var(--bridge-deep);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+    }
+
+    footer .footer-mark {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      color: var(--bridge);
+    }
+
+    /* ---- Scroll Reveal ---- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.06s; }
+    .reveal-delay-2 { transition-delay: 0.12s; }
+    .reveal-delay-3 { transition-delay: 0.18s; }
+    .reveal-delay-4 { transition-delay: 0.24s; }
+    .reveal-delay-5 { transition-delay: 0.3s; }
+
+    /* ---- Responsive ---- */
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 0.8rem 2rem;
+      }
+
+      .nav-mark {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--earth-weight);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 100;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links.open a {
+        color: var(--page);
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+      }
+
+      .nav-links.open a::after {
+        background: var(--page);
+      }
+
+      .nav-toggle {
+        display: block;
+        z-index: 101;
+      }
+
+      .nav-toggle.active span {
+        background: var(--page);
+      }
+
+      .page-hero {
+        padding: 2rem;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+      }
+
+      .page-hero-gesture {
+        top: 8%;
+        right: -5%;
+        opacity: 0.12;
+      }
+
+      .service-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .engagement-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .terms-inner {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .page-hero {
+        padding: 1.5rem;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+      }
+
+      nav {
+        padding: 0.7rem 1.5rem;
+      }
+
+      .service-section,
+      .engagement,
+      .terms,
+      .cta {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .service-number {
+        font-size: 2.5rem;
+      }
+
+      .page-hero-gesture {
+        display: none;
+      }
+
+      .engagement-step {
+        padding: 2rem 1.5rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-mark">VDN</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-gesture"></div>
+    <div class="page-hero-content">
+      <span class="label reveal">Investment</span>
+      <h1 class="display-lg reveal reveal-delay-1">What to expect</h1>
+      <p class="reveal reveal-delay-2">
+        Every project is scoped individually. The rates below are starting points — a framework for the conversation, not a ceiling or a menu.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service 01: Design Consultation -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">01</span>
+        <h2>Design Consultation</h2>
+        <p>Comprehensive design direction for residential and commercial spaces. We study the conditions of your space — light, layout, how you actually live in it — and build a design strategy that's grounded in your goals and rooted in design history.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Hourly</span>
+          <div class="rate-line">
+            <span class="rate-item">Design consultation</span>
+            <span class="rate-price">$125 &ndash; $175 /hr</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Per Session</span>
+          <div class="rate-line">
+            <span class="rate-item">Initial consultation</span>
+            <span class="rate-price">from $500</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Comprehensive design session</span>
+            <span class="rate-price">$800 &ndash; $1,500</span>
+          </div>
+          <p class="rate-note">Consultations can also be packaged as part of a larger project engagement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 02: Technical Drawing & CAD -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">02</span>
+        <h2>Technical Drawing &amp; CAD</h2>
+        <p>Detailed technical drawings, space planning, and documentation in Revit, AutoCAD, and Inventor. From a single floor plan to a full permit-ready construction document set, the precision behind the design vision.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Hourly</span>
+          <div class="rate-line">
+            <span class="rate-item">AutoCAD drafting</span>
+            <span class="rate-price">$65 &ndash; $85 /hr</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Revit / BIM drafting</span>
+            <span class="rate-price">$75 &ndash; $95 /hr</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">As-built documentation</span>
+            <span class="rate-price">$65 &ndash; $80 /hr</span>
+          </div>
+          <p class="rate-note">As-built work includes on-site field measurement time.</p>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Per Square Foot</span>
+          <div class="rate-line">
+            <span class="rate-item">Residential plan sets</span>
+            <span class="rate-price">$1.25 &ndash; $2.00 /sf</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-3">
+          <span class="rate-group-label">Per Project</span>
+          <div class="rate-line">
+            <span class="rate-item">Individual floor plan</span>
+            <span class="rate-price">from $300</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Full residential set</span>
+            <span class="rate-price">$1,500 &ndash; $6,000+</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Permit-ready set</span>
+            <span class="rate-price">$2,500 &ndash; $6,000</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Kitchen / bath remodel drawings</span>
+            <span class="rate-price">$800 &ndash; $2,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 03: Project Visualization -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">03</span>
+        <h2>Project Visualization</h2>
+        <p>Renderings and visual presentations that communicate design intent clearly. Helping clients, contractors, and stakeholders see and feel the space before a single element is placed.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Per View</span>
+          <div class="rate-line">
+            <span class="rate-item">Presentation-quality rendering</span>
+            <span class="rate-price">$250 &ndash; $500</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Per Project</span>
+          <div class="rate-line">
+            <span class="rate-item">3D model from plans</span>
+            <span class="rate-price">$500 &ndash; $1,500</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Full visualization package</span>
+            <span class="rate-price">$1,500 &ndash; $4,000+</span>
+          </div>
+          <p class="rate-note">Packages typically include multiple views, revisions, and final high-resolution deliverables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 04: Material & Finish Selection -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">04</span>
+        <h2>Material &amp; Finish Selection</h2>
+        <p>Expert guidance on materials, finishes, and palettes. We source options that serve both the aesthetic vision and practical requirements — then document everything in specification sheets your contractor can work from.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Hourly</span>
+          <div class="rate-line">
+            <span class="rate-item">Material consultation</span>
+            <span class="rate-price">$95 &ndash; $135 /hr</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Flat Fee</span>
+          <div class="rate-line">
+            <span class="rate-item">Per-room package</span>
+            <span class="rate-price">$400 &ndash; $800</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Full-home package</span>
+            <span class="rate-price">$1,500 &ndash; $4,000+</span>
+          </div>
+          <p class="rate-note">Includes sourcing, sampling, and specification sheets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 05: Space Curation -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">05</span>
+        <h2>Space Curation</h2>
+        <p>Selecting and sourcing furnishings, art, and objects that create a cohesive narrative. Not decoration — curation with intention and context. Every piece earns its place.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Hourly</span>
+          <div class="rate-line">
+            <span class="rate-item">Curation consultation</span>
+            <span class="rate-price">$95 &ndash; $135 /hr</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Per Room / Per Home</span>
+          <div class="rate-line">
+            <span class="rate-item">Single room</span>
+            <span class="rate-price">$800 &ndash; $2,000</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Full home</span>
+            <span class="rate-price">$3,000 &ndash; $8,000+</span>
+          </div>
+          <p class="rate-note">Includes furniture selection, art sourcing, and object curation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service 06: Decor & Styling -->
+  <section class="service-section">
+    <div class="service-inner">
+      <div class="service-left reveal">
+        <span class="service-number">06</span>
+        <h2>Decor &amp; Styling</h2>
+        <p>The final layer that brings a space to life. Thoughtful placement of objects, textiles, and art that transforms rooms into environments that feel collected over time — not staged.</p>
+      </div>
+      <div class="service-right">
+        <div class="rate-group reveal reveal-delay-1">
+          <span class="rate-group-label">Hourly</span>
+          <div class="rate-line">
+            <span class="rate-item">Styling rate</span>
+            <span class="rate-price">$85 &ndash; $125 /hr</span>
+          </div>
+        </div>
+        <div class="rate-group reveal reveal-delay-2">
+          <span class="rate-group-label">Per Project</span>
+          <div class="rate-line">
+            <span class="rate-item">Styling consultation</span>
+            <span class="rate-price">$300 &ndash; $600</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Full room styling</span>
+            <span class="rate-price">$500 &ndash; $1,500</span>
+          </div>
+          <div class="rate-line">
+            <span class="rate-item">Event / photoshoot styling</span>
+            <span class="rate-price">$500 &ndash; $2,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="engagement">
+    <div class="engagement-inner">
+      <span class="label reveal">Process</span>
+      <h2 class="display-lg reveal reveal-delay-1">How we work</h2>
+      <div class="engagement-steps">
+        <div class="engagement-step reveal">
+          <span class="step-number">01</span>
+          <h3>Conversation</h3>
+          <p>We start by listening. Every project begins with understanding your space, your goals, and what success looks like for you.</p>
+        </div>
+        <div class="engagement-step reveal reveal-delay-1">
+          <span class="step-number">02</span>
+          <h3>Scope &amp; Proposal</h3>
+          <p>A detailed proposal tailored to your project — clear deliverables, timeline, and investment. No surprises.</p>
+        </div>
+        <div class="engagement-step reveal reveal-delay-2">
+          <span class="step-number">03</span>
+          <h3>Execution</h3>
+          <p>We work with precision and regular communication. You see progress at every stage and have input throughout.</p>
+        </div>
+        <div class="engagement-step reveal reveal-delay-3">
+          <span class="step-number">04</span>
+          <h3>Delivery</h3>
+          <p>Final deliverables in the formats you need — print-ready, contractor-ready, or presentation-ready. Revisions included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms & Notes -->
+  <section class="terms">
+    <div class="terms-inner">
+      <div class="terms-left reveal">
+        <span class="label">Good to Know</span>
+        <h2 class="display-md reveal reveal-delay-1">A few notes</h2>
+        <p class="reveal reveal-delay-2">
+          All pricing is a starting point for conversation. Every project is scoped and quoted individually based on complexity, timeline, and deliverables.
+        </p>
+      </div>
+      <div class="terms-right">
+        <div class="term-item reveal reveal-delay-1">
+          <span class="label">Minimum Project Fee</span>
+          <p>$500. This ensures every engagement gets the attention and thoroughness it deserves.</p>
+        </div>
+        <div class="term-item reveal reveal-delay-2">
+          <span class="label">Rush &amp; Expedite</span>
+          <p>Tight timelines are possible. Rush projects carry a 25 &ndash; 50% surcharge depending on scope and turnaround.</p>
+        </div>
+        <div class="term-item reveal reveal-delay-3">
+          <span class="label">Licensed Architect Coordination</span>
+          <p>Projects requiring a licensed architect's stamp or seal can be accommodated through our professional network. We handle the coordination.</p>
+        </div>
+        <div class="term-item reveal reveal-delay-4">
+          <span class="label">Custom Projects</span>
+          <p>Don't see exactly what you need? Most of our work spans multiple service lines. We'll build a custom scope that fits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <span class="label reveal">Ready?</span>
+      <h2 class="display-lg reveal reveal-delay-1">Let's talk about<br>your project</h2>
+      <p class="reveal reveal-delay-2">
+        Every project begins with a conversation. Tell us about your space and we'll take it from there.
+      </p>
+      <a href="index.html#contact" class="cta-btn reveal reveal-delay-3">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-mark">VDN</span>
+    <p>&copy; 2026 VDN Drafting &amp; Interiors. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -10px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
