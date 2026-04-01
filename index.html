@@ -314,6 +314,7 @@
       position: relative;
       overflow: hidden;
       object-fit: cover;
+      object-position: center top;
     }
 
     /* Small organic accent near the image */
@@ -492,91 +493,137 @@
       font-size: 0.85rem;
     }
 
-    .portfolio-grid {
+    /* Portfolio — each project is a clickable card that expands */
+    .portfolio-list {
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-template-rows: auto auto;
-      gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--earth-whisper);
     }
 
-    .portfolio-item {
-      position: relative;
-      overflow: hidden;
+    .portfolio-project {
+      background: var(--page);
       cursor: pointer;
-    }
-
-    .portfolio-item-inner {
-      aspect-ratio: var(--ratio, 4/3);
-      background: var(--bg);
-      position: relative;
       overflow: hidden;
-      transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    .portfolio-item:hover .portfolio-item-inner {
-      transform: scale(0.97);
+    .portfolio-project-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 320px;
+      transition: opacity 0.3s ease;
     }
 
-    /* Each portfolio item gets its own tonal treatment — collected, not matched */
-    .portfolio-item:nth-child(1) .portfolio-item-inner {
-      --bg: var(--earth-whisper);
-      --ratio: 4/3;
+    .portfolio-project-header:hover {
+      opacity: 0.92;
     }
 
-    .portfolio-item:nth-child(2) .portfolio-item-inner {
-      --bg: var(--sage-whisper);
-      --ratio: 3/4;
+    .portfolio-project-image {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
     }
 
-    .portfolio-item:nth-child(3) .portfolio-item-inner {
-      --bg: var(--bridge);
-      --ratio: 16/10;
+    .portfolio-project-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(2rem, 4vw, 4rem);
     }
 
-    .portfolio-item:nth-child(4) .portfolio-item-inner {
-      --bg: var(--page-warm);
-      --ratio: 1/1;
-    }
-
-    /* Project labels */
-    .portfolio-item-inner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(28, 27, 24, 0.3) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .portfolio-item:hover .portfolio-item-inner::after {
-      opacity: 1;
-    }
-
-    .portfolio-meta {
-      padding: 1.2rem 0 0;
-    }
-
-    .portfolio-meta h3 {
-      font-family: 'Marcellus SC', serif;
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 0.3rem;
-    }
-
-    .portfolio-meta span {
-      font-size: 0.78rem;
+    .portfolio-project-info .label {
       color: var(--ink-faint);
-      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+      display: block;
     }
 
-    /* Grid layout — asymmetric */
-    .portfolio-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-    .portfolio-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-    .portfolio-item:nth-child(3) { grid-column: 1; grid-row: 2; }
-    .portfolio-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+    .portfolio-project-info h3 {
+      font-family: 'Marcellus SC', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-project-info p {
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      max-width: 400px;
+    }
+
+    .portfolio-expand-hint {
+      font-family: 'Marcellus SC', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .portfolio-project-header:hover .portfolio-expand-hint {
+      color: var(--earth-weight);
+    }
+
+    .portfolio-expand-hint .arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .portfolio-project.open .portfolio-expand-hint .arrow {
+      transform: rotate(90deg);
+    }
+
+    /* Expanded gallery */
+    .portfolio-gallery {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .portfolio-project.open .portfolio-gallery {
+      max-height: 2000px;
+    }
+
+    .portfolio-gallery-inner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0.5rem;
+      padding: 0.5rem;
+      padding-top: 0;
+    }
+
+    .portfolio-gallery-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Alternate layout — image on right for even projects */
+    .portfolio-project:nth-child(even) .portfolio-project-header {
+      direction: rtl;
+    }
+
+    .portfolio-project:nth-child(even) .portfolio-project-header > * {
+      direction: ltr;
+    }
+
+    .portfolio-project:nth-child(even) {
+      background: var(--page-warm);
+    }
 
     /* ============================================
        CONTACT — Warm, inviting, grounded.
@@ -865,16 +912,22 @@
         grid-template-columns: 1fr;
       }
 
-      .portfolio-grid {
+      .portfolio-project-header {
         grid-template-columns: 1fr;
+        min-height: auto;
       }
 
-      .portfolio-item:nth-child(1),
-      .portfolio-item:nth-child(2),
-      .portfolio-item:nth-child(3),
-      .portfolio-item:nth-child(4) {
-        grid-column: 1;
-        grid-row: auto;
+      .portfolio-project:nth-child(even) .portfolio-project-header {
+        direction: ltr;
+      }
+
+      .portfolio-project-image {
+        min-height: 250px;
+        max-height: 350px;
+      }
+
+      .portfolio-gallery-inner {
+        grid-template-columns: 1fr;
       }
 
       .contact-grid {
@@ -1051,7 +1104,7 @@
   <!-- Sketch Accent — atmospheric, not portfolio -->
   <section class="sketch-accent">
     <div class="sketch-accent-inner">
-      <img src="images/sketch-collage.jpg" alt="Architectural sketches — Saarinen, Le Corbusier, Goff" class="sketch-accent-image reveal">
+      <img src="images/sketch-landscape.jpg" alt="Observational architectural sketch" class="sketch-accent-image reveal">
     </div>
   </section>
 
@@ -1064,35 +1117,88 @@
       </div>
       <p class="portfolio-header-right reveal reveal-delay-2">Architecture &middot; Interiors &middot; Curation</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-item reveal">
-        <div class="portfolio-item-inner" style="--bg: transparent; background-image: url('images/project-townhomes.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="portfolio-meta">
-          <h3>Elizabeth City Townhomes</h3>
-          <span>Architecture &middot; CAD &middot; Visualization</span>
+    <div class="portfolio-list">
+
+      <!-- Project 1: Elizabeth City Townhomes -->
+      <div class="portfolio-project reveal" onclick="this.classList.toggle('open')">
+        <div class="portfolio-project-header">
+          <img src="images/project-townhomes.jpg" alt="Elizabeth City Townhomes rendering" class="portfolio-project-image">
+          <div class="portfolio-project-info">
+            <span class="label">Architecture</span>
+            <h3>Elizabeth City Townhomes</h3>
+            <p>Full architectural visualization from floor plans through final renders. AutoCAD drawings modeled in Revit, with hand sketches that introduced angular porches and dynamic material shifts — breaking from the typical multifamily formula.</p>
+            <span class="portfolio-expand-hint"><span class="arrow">&rsaquo;</span> View project</span>
+          </div>
+        </div>
+        <div class="portfolio-gallery">
+          <div class="portfolio-gallery-inner">
+            <img src="images/project-townhomes.jpg" alt="Elizabeth City Townhomes — street view rendering">
+            <img src="images/project-charles-ave.jpg" alt="The Collection at Charles Avenue — street rendering">
+          </div>
         </div>
       </div>
-      <div class="portfolio-item reveal reveal-delay-1">
-        <div class="portfolio-item-inner" style="--bg: transparent; --ratio: 3/4; background-image: url('images/realized-entry.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="portfolio-meta">
-          <h3>Curated Entry</h3>
-          <span>Sourcing &amp; curation &middot; Residential</span>
+
+      <!-- Project 2: The Collection at Charles Avenue -->
+      <div class="portfolio-project reveal" onclick="this.classList.toggle('open')">
+        <div class="portfolio-project-header">
+          <img src="images/project-charles-ave-aerial.jpg" alt="The Collection at Charles Avenue aerial render" class="portfolio-project-image">
+          <div class="portfolio-project-info">
+            <span class="label">Architecture &middot; Multifamily</span>
+            <h3>The Collection at Charles Avenue</h3>
+            <p>32 vertical apartments and 6 flats across three buildings, with attached garages and rated corridors. Detailed documentation of existing power lines, site coordination, and complex unit layouts from ground level through roof plan.</p>
+            <span class="portfolio-expand-hint"><span class="arrow">&rsaquo;</span> View project</span>
+          </div>
+        </div>
+        <div class="portfolio-gallery">
+          <div class="portfolio-gallery-inner">
+            <img src="images/project-charles-ave-aerial.jpg" alt="Charles Avenue — aerial site render">
+            <img src="images/project-charles-ave.jpg" alt="Charles Avenue — street level render">
+          </div>
         </div>
       </div>
-      <div class="portfolio-item reveal reveal-delay-2">
-        <div class="portfolio-item-inner" style="--bg: transparent; --ratio: 16/10; background-image: url('images/realized-kitchen.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="portfolio-meta">
-          <h3>Kitchen Gathering Space</h3>
-          <span>Spatial reconfiguration &middot; FF&amp;E &middot; Residential</span>
+
+      <!-- Project 3: St. Alban's Parish Hall Addition -->
+      <div class="portfolio-project reveal" onclick="this.classList.toggle('open')">
+        <div class="portfolio-project-header">
+          <img src="images/project-st-albans.jpg" alt="St. Alban's Parish Hall Addition aerial render" class="portfolio-project-image">
+          <div class="portfolio-project-info">
+            <span class="label">Architecture &middot; Institutional</span>
+            <h3>St. Alban's Parish Hall Addition</h3>
+            <p>Ground-up addition to a historic Episcopal church. Specification schedules, commercial kitchen equipment planning, demolition phasing in Revit, and interior timber detailing. Every piece of equipment specified from sizing to utility requirements.</p>
+            <span class="portfolio-expand-hint"><span class="arrow">&rsaquo;</span> View project</span>
+          </div>
+        </div>
+        <div class="portfolio-gallery">
+          <div class="portfolio-gallery-inner">
+            <img src="images/project-st-albans.jpg" alt="St. Alban's — aerial render">
+            <img src="images/project-st-albans-ground.jpg" alt="St. Alban's — ground level render">
+          </div>
         </div>
       </div>
-      <div class="portfolio-item reveal reveal-delay-3">
-        <div class="portfolio-item-inner" style="--bg: transparent; --ratio: 1/1; background-image: url('images/project-charles-ave-aerial.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="portfolio-meta">
-          <h3>The Collection at Charles Avenue</h3>
-          <span>Architecture &middot; 38 units &middot; Multifamily</span>
+
+      <!-- Project 4: Realized Spaces — Curation & Styling -->
+      <div class="portfolio-project reveal" onclick="this.classList.toggle('open')">
+        <div class="portfolio-project-header">
+          <img src="images/realized-kitchen.jpg" alt="Kitchen gathering space reconfiguration" class="portfolio-project-image">
+          <div class="portfolio-project-info">
+            <span class="label">Interiors &middot; FF&amp;E &middot; Styling</span>
+            <h3>Realized Spaces</h3>
+            <p>Spatial reconfiguration, furniture sourcing, and styling across dining, entry, kitchen, and bedroom spaces. Every piece is intentionally chosen — from a travertine table that echoes the floors, to vintage Dior chairs, to a 600-year-old Italian castle door.</p>
+            <span class="portfolio-expand-hint"><span class="arrow">&rsaquo;</span> View project</span>
+          </div>
+        </div>
+        <div class="portfolio-gallery">
+          <div class="portfolio-gallery-inner">
+            <img src="images/realized-entry.jpg" alt="Curated entry — marble table, vintage lantern, modern floor lamp">
+            <img src="images/realized-dining.jpg" alt="Dining room with CHEEKY letters">
+            <img src="images/realized-dining-alt.jpg" alt="Dining room — castle door, sculptural bowl, lamp">
+            <img src="images/realized-bedroom.jpg" alt="Bedroom — sculptural lamps, custom headboard">
+            <img src="images/realized-lounge.jpg" alt="Lounge — curved sofa, lacquered screen">
+            <img src="images/sourcing-chair.jpg" alt="Pedro Friedeberg hand chair — sourced in Mexico City">
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
